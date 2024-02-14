@@ -1,9 +1,6 @@
 on: ["push", "pull_request"]
-
 name: Go
-
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -20,8 +17,11 @@ jobs:
     - name: Test and Coverage
       run: go test -v ./... -coverprofile=coverage.out
 
-    - name: Coveralls GitHub Action
-      uses: coverallsapp/github-action@master
+    - name: Coveralls
+    - uses: actions/setup-go@v5
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./coverage.out
+        go-version: "1.21"
+    - run: go test -v -coverprofile=profile.cov ./...
+    - uses: shogo82148/actions-goveralls@v1
+      with:
+        path-to-profile: profile.cov
