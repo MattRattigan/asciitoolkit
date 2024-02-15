@@ -53,7 +53,7 @@ func ASCIIPunctuation() string {
 	return builder.String()
 }
 
-// HexDigits generates ASCII characters between ('a' through 'z') and ('A' through 'Z') than returns string
+// HexDigits generates ASCII characters between ('a' through 'z') and ('A' through 'Z') than returns string.
 func HexDigits() string {
 	var builder strings.Builder
 	for d := '0'; d <= '9'; d++ {
