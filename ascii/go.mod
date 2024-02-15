@@ -1,3 +1,4 @@
-module github.com/matt/aciitools/ascii
+module github.com/MattRattigan/asciitoolkit/ascii
 
 go 1.19
+

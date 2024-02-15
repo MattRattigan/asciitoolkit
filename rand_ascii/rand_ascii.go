@@ -1,7 +1,7 @@
 package rand_ascii
 
 import (
-	"github.com/matt/aciitools/ascii"
+	"github.com/MattRattigan/asciitoolkit/ascii"
 	"math/rand"
 	"strings"
 	"time"
