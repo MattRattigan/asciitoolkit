@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Chars.iml" filepath="$PROJECT_DIR$/.idea/Chars.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/asciitoolkit.iml" filepath="$PROJECT_DIR$/.idea/asciitoolkit.iml" />
     </modules>
   </component>
 </project>
