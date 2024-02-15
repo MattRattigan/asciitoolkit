@@ -2,7 +2,7 @@ on: [push, pull_request]
 name: Go
 
 jobs:
-  build:
+  test-and-coverage:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -11,9 +11,6 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: '1.20'
-
-    - name: Build
-      run: go build -v ./...
 
     - name: Test and Coverage
       run: go test -v -coverprofile=coverage.out ./...
