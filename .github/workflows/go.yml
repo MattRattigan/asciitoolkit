@@ -13,7 +13,9 @@ jobs:
         go-version: '1.20'
 
     - name: Build
-      run: go build -v ./...
+      run: |
+        cd module1
+        go build -v .
 
     - name: Test and Coverage
       run: go test -v -coverprofile=coverage.out ./...
