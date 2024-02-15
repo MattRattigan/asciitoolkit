@@ -1,4 +1,4 @@
-package letters
+package ascii
 
 // helper facilitates the actions performed in ContainsASCIIDigit, ContainsASCIILetter, ContainsASCIIUpper, ContainsASCIILower,
 // and ContainsASCIIPunct

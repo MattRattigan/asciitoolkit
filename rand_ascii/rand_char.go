@@ -1,7 +1,7 @@
 package rand_ascii
 
 import (
-	"github.com/matt/aciitools/letters"
+	"github.com/matt/aciitools/ascii"
 	"math/rand"
 	"time"
 )
@@ -18,31 +18,31 @@ func helperChar(f func() string) string {
 }
 
 // RandCharDigit generates a random ASCII character returns as type string. The selection is made from the set of characters
-// defined in 'letters.Digits'
+// defined in 'ascii.Digits'
 func RandCharDigit() string {
-	return helperChar(letters.Digits)
+	return helperChar(ascii.Digits)
 }
 
 // RandCharLetter generates a random ASCII character returns as type string. The selection is made from the set of characters
-// defined in 'letters.ASCIILetters'
+// defined in 'ascii.ASCIILetters'
 func RandCharLetter() string {
-	return helperChar(letters.ASCIILetters)
+	return helperChar(ascii.ASCIILetters)
 }
 
 // RandCharLower generates a random ASCII Uppercase character, returns as type string. The selection is made from the set of uppercase characters
-// defined in 'letters.ASCIILowercase'
+// defined in 'ascii.ASCIILowercase'
 func RandCharLower() string {
-	return helperChar(letters.ASCIILowercase)
+	return helperChar(ascii.ASCIILowercase)
 }
 
 // RandCharUpper generates a random ASCII Uppercase character returns as type string. The selection is made from the set of uppercase characters
-// defined in 'letters.ASCIIUppercase'
+// defined in 'ascii.ASCIIUppercase'
 func RandCharUpper() string {
-	return helperChar(letters.ASCIIUppercase)
+	return helperChar(ascii.ASCIIUppercase)
 }
 
 // RandCharPunct generates a random ASCII punctuation character returns as type string. The selection is made from the set of punctuation characters
-// defined in 'letters.ASCIIPunctuation'.
+// defined in 'ascii.ASCIIPunctuation'.
 func RandCharPunct() string {
-	return helperChar(letters.ASCIIPunctuation)
+	return helperChar(ascii.ASCIIPunctuation)
 }

@@ -1,4 +1,4 @@
-package letters
+package ascii
 
 // IsASCIIDigit checks if the given rune r represents an ASCII digit between ('0' through '9').
 // returns true if r is within the range of ASCII digits, false if otherwise.
@@ -6,20 +6,20 @@ func IsASCIIDigit(r rune) bool {
 	return r >= '0' && r <= '9'
 }
 
-// IsASCIILetter checks if the given rune r represents an ASCII letters that reside between ('A' through 'Z') or .
-// ('a' through 'z') returns true if r is within the range of ASCII letters, false if otherwise.
+// IsASCIILetter checks if the given rune r represents an ASCII that reside between ('A' through 'Z') or .
+// ('a' through 'z') returns true if r is within the range of ASCII, false if otherwise.
 func IsASCIILetter(r rune) bool {
 	return (r >= 'A' && r <= 'Z') || (r >= 'a' && r <= 'z')
 }
 
-// IsASCIIUpper checks if the given rune r represents an ASCII uppercase letters ('A' through 'Z').
-// returns true if r is within the range of ASCII uppercase letters, false if otherwise.
+// IsASCIIUpper checks if the given rune r represents an ASCII uppercase ascii ('A' through 'Z').
+// returns true if r is within the range of ASCII uppercase ascii, false if otherwise.
 func IsASCIIUpper(r rune) bool {
 	return r >= 'A' && r <= 'Z'
 }
 
 // IsASCIILower checks if the given rune r represents an ASCII lowercase letter ('a' through 'z').
-// returns true if r is within the range of ASCII lowercase letters, false if otherwise.
+// returns true if r is within the range of ASCII lowercase ascii, false if otherwise.
 func IsASCIILower(r rune) bool {
 	return r >= 'a' && r <= 'z'
 }
@@ -44,7 +44,7 @@ func IsASCII(s string) bool {
 }
 
 // IsASCIIAlphanumeric checks whether the provided string is set of alphanumeric characters,
-// letters or digits of Printable and Control characters
+// ascii or digits of Printable and Control characters
 func IsASCIIAlphanumeric(s string) bool {
 	for _, r := range s {
 		if !IsASCIIDigit(r) && !IsASCIILetter(r) {

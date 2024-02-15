@@ -1,7 +1,7 @@
 package rand_ascii
 
 import (
-	"github.com/matt/aciitools/letters"
+	"github.com/matt/aciitools/ascii"
 	"math/rand"
 	"strings"
 	"time"
@@ -13,9 +13,9 @@ func init() {
 
 // Iota
 const (
-	// LOW flag representation of lowercase ASCII letters
+	// LOW flag representation of lowercase ASCII
 	LOW = 1 << iota
-	// UPP flag representation of uppercase ASCII letters
+	// UPP flag representation of uppercase ASCII
 	UPP
 	// DIG flag representation of 0-9
 	DIG
@@ -31,33 +31,33 @@ func helper(f func() string) rune {
 }
 
 // RandASCIIDigit generates a random ASCII character returns as type rune. The selection is made from the set of characters
-// defined in 'letters.Digits'
+// defined in 'ascii.Digits'
 func RandASCIIDigit() rune {
-	return helper(letters.Digits)
+	return helper(ascii.Digits)
 }
 
 // RandASCIILetter generates a random ASCII character returns as type rune. The selection is made from the set of characters
-// defined in 'letters.ASCIILetters'
+// defined in 'ascii.ASCIILetters'
 func RandASCIILetter() rune {
-	return helper(letters.ASCIILetters)
+	return helper(ascii.ASCIILetters)
 }
 
 // RandASCIILower generates a random ASCII Uppercase character returns as type rune. The selection is made from the set of uppercase characters
-// defined in 'letters.ASCIILowercase'
+// defined in 'ascii.ASCIILowercase'
 func RandASCIILower() rune {
-	return helper(letters.ASCIILowercase)
+	return helper(ascii.ASCIILowercase)
 }
 
 // RandASCIIUpper generates a random ASCII Uppercase character returns as type rune. The selection is made from the set of uppercase characters
-// defined in 'letters.ASCIIUppercase'
+// defined in 'ascii.ASCIIUppercase'
 func RandASCIIUpper() rune {
-	return helper(letters.ASCIIUppercase)
+	return helper(ascii.ASCIIUppercase)
 }
 
 // RandASCIIPunct generates a random ASCII punctuation character returns as type rune. The selection is made from the set of punctuation characters
-// defined in 'letters.ASCIIPunctuation'.
+// defined in 'ascii.ASCIIPunctuation'.
 func RandASCIIPunct() rune {
-	return helper(letters.ASCIIPunctuation)
+	return helper(ascii.ASCIIPunctuation)
 }
 
 // RandASCIIString generates a random ASCII string of the specified length. The 'flags' parameter

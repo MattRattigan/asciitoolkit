@@ -1,4 +1,4 @@
-package letters
+package ascii
 
 import (
 	"strings"
@@ -21,7 +21,7 @@ func ASCIILetters() string {
 	return builder.String()
 }
 
-// ASCIILowercase generates ASCII lowercase letters that are between ('a' through 'z') than returns string.
+// ASCIILowercase generates ASCII lowercase ascii that are between ('a' through 'z') than returns string.
 func ASCIILowercase() string {
 	var builder strings.Builder
 	for c := 'a'; c <= 'z'; c++ {
@@ -30,7 +30,7 @@ func ASCIILowercase() string {
 	return builder.String()
 }
 
-// ASCIIUppercase generates ASCII uppercase letters ('A' through 'Z') than returns string.
+// ASCIIUppercase generates ASCII uppercase ascii ('A' through 'Z') than returns string.
 func ASCIIUppercase() string {
 	var builder strings.Builder
 	for c := 'A'; c <= 'Z'; c++ {

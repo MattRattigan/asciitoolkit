@@ -1,7 +1,7 @@
 package rand_ascii
 
 import (
-	"github.com/matt/aciitools/letters"
+	"github.com/matt/aciitools/ascii"
 	"testing"
 )
 
@@ -9,7 +9,7 @@ func TestRandASCIIDigit(t *testing.T) {
 	t.Parallel()
 	for i := 0; i < 1000; i++ {
 		got := RandASCIIDigit()
-		if !letters.IsASCIIDigit(got) {
+		if !ascii.IsASCIIDigit(got) {
 			t.Errorf("expecting a rune, got: %c", got)
 		}
 	}
@@ -20,7 +20,7 @@ func TestRandASCIILetter(t *testing.T) {
 	t.Parallel()
 	for i := 0; i < 1000; i++ {
 		got := RandASCIILetter()
-		if !letters.IsASCIILetter(got) {
+		if !ascii.IsASCIILetter(got) {
 			t.Errorf("expecting a rune, got: %c", got)
 		}
 	}
@@ -30,7 +30,7 @@ func TestRandASCIILower(t *testing.T) {
 	t.Parallel()
 	for i := 0; i < 1000; i++ {
 		got := RandASCIILower()
-		if !letters.IsASCIILower(got) {
+		if !ascii.IsASCIILower(got) {
 			t.Errorf("expecting a rune, got: %c", got)
 		}
 	}
@@ -40,7 +40,7 @@ func TestRandASCIIUpper(t *testing.T) {
 	t.Parallel()
 	for i := 0; i < 1000; i++ {
 		got := RandASCIIUpper()
-		if !letters.IsASCIIUpper(got) {
+		if !ascii.IsASCIIUpper(got) {
 			t.Errorf("expecting a rune, got: %c", got)
 		}
 	}
@@ -50,7 +50,7 @@ func TestRandASCIIPunct(t *testing.T) {
 	t.Parallel()
 	for i := 0; i < 1000; i++ {
 		got := RandASCIIPunct()
-		if !letters.IsASCIIPunct(got) {
+		if !ascii.IsASCIIPunct(got) {
 			t.Errorf("expecting a rune, got: %c", got)
 		}
 	}
@@ -69,7 +69,7 @@ func TestRandASCIIString(t *testing.T) {
 	for _, tc := range test {
 		t.Run(tc.name, func(t *testing.T) {
 			result := RandASCIIString(tc.length, tc.input)
-			if !letters.IsASCII(result) {
+			if !ascii.IsASCII(result) {
 				t.Errorf("expecting string of comprised ASCII characters, got: %s", result)
 			}
 		})

@@ -1,4 +1,4 @@
-package letters
+package ascii
 
 // CountASCIIDigits counts the number of ASCII digit characters ('0'-'9') in the
 // given string, return an int as the amount of counted digits.
@@ -14,7 +14,7 @@ func CountASCIIDigits(s string) int {
 
 // CountASCIILetters counts the total number of ASCII letter characters (both
 // uppercase and lowercase 'a' through 'z' and 'A' through 'Z') in the given
-// string, return an int as the amount of counted letters.
+// string, return an int as the amount of counted ascii.
 func CountASCIILetters(s string) int {
 	count := 0
 	for _, r := range s {
@@ -26,8 +26,8 @@ func CountASCIILetters(s string) int {
 }
 
 // CountASCIIUpper counts the number of uppercase ASCII letter characters ('A'
-// through 'Z') return an int as the amount of counted uppercase letters, return
-// an int as the amount of counted letters.
+// through 'Z') return an int as the amount of counted uppercase ascii, return
+// an int as the amount of counted ascii.
 func CountASCIIUpper(s string) int {
 	count := 0
 	for _, r := range s {
@@ -40,7 +40,7 @@ func CountASCIIUpper(s string) int {
 
 // CountASCIILower counts the number of lowercase ASCII letter characters ('a'
 // through 'z') in the given string, return an int as the amount of counted
-// letters.
+// ascii.
 func CountASCIILower(s string) int {
 	count := 0
 	for _, r := range s {

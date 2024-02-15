@@ -1,4 +1,4 @@
-package letters
+package ascii
 
 import "testing"
 
