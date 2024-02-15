@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-// TestASCIILowercase tests the ASCIILowercase function to ensure it returns the correct string of lowercase ASCII ascii.
+// TestASCIILowercase tests the ASCIILowercase function to ensure it returns the correct string of lowercase ASCII.
 func TestASCIILowercase(t *testing.T) {
 	t.Parallel()
 	want := "abcdefghijklmnopqrstuvwxyz"
@@ -16,7 +16,7 @@ func TestASCIILowercase(t *testing.T) {
 	}
 }
 
-// TestASCIIUppercase tests the ASCIIUppercase function to ensure it returns the correct string of uppercase ASCII ascii.
+// TestASCIIUppercase tests the ASCIIUppercase function to ensure it returns the correct string of uppercase ASCII.
 func TestASCIIUppercase(t *testing.T) {
 	t.Parallel()
 	want := "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -27,7 +27,7 @@ func TestASCIIUppercase(t *testing.T) {
 	}
 }
 
-// TestASCIIPunctuation tests the TestASCIIPunctuation function to ensure it returns the correct string of punctuation ASCII ascii.
+// TestASCIIPunctuation tests the TestASCIIPunctuation function to ensure it returns the correct string of punctuation ASCII.
 func TestASCIIPunctuation(t *testing.T) {
 	t.Parallel()
 	want := "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
