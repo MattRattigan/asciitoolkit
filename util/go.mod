@@ -1,4 +1,4 @@
-module util
+module github.com/matt/aciitools/util
 
 go 1.19
 

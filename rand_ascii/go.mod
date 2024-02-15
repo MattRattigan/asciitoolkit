@@ -1,4 +1,4 @@
-module rand_ascii
+module github.com/matt/aciitools/rand_ascii
 
 go 1.19
 
