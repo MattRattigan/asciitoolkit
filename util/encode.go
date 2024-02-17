@@ -1,25 +1,46 @@
 package util
 
 import (
+	"encoding/base64"
+	"encoding/hex"
 	"fmt"
 	"github.com/MattRattigan/asciitoolkit/ascii"
 	"regexp"
+	"strings"
 )
 
+// ToASCIIHex converts a string to its ASCII hexadecimal representation.
 func ToASCIIHex(s string) string {
-	return ""
+	result := ""
+	for _, c := range s {
+		result += fmt.Sprintf("%02x", c)
+	}
+	return result
 }
 
+// FromASCIIHex converts an ASCII hexadecimal representation back to the original string.
 func FromASCIIHex(hexStr string) (string, error) {
-	return "", nil
+	bytes, err := hex.DecodeString(hexStr)
+	if err != nil {
+		return "", err // Return the error if the input is not a valid hexadecimal string.
+	}
+	return string(bytes), nil
 }
 
+// MapASCIIFunc maps a function to each rune in the string and returns a new string.
 func MapASCIIFunc(s string, f func(rune) rune) string {
-	return ""
+	result := strings.Builder{}
+	for _, r := range s {
+		result.WriteRune(f(r))
+	}
+	return result.String()
 }
 
-func CompareASCIIIgnoreCase() {
-
+// CompareASCIIIgnoreCase compares two ASCII strings, ignoring case differences.
+// Returns true if the strings are equal ignoring case, false otherwise.
+func CompareASCIIIgnoreCase(s1, s2 string) bool {
+	// Convert both strings to the same case for a case-insensitive comparison
+	return strings.EqualFold(s1, s2)
 }
 
 // ToASCIILowerInPlace converts the input to lowercase in place. It supports both string and rune types.
@@ -46,19 +67,28 @@ func ToASCIIUpperInPlace[T string | rune](v *T) {
 	}
 }
 
-func EncodeASCIIBase64() {
-
-}
-func DecodeASCIIBase64() {
-
+// EncodeASCIIBase64 encodes a given ASCII string into a Base64 encoded string.
+func EncodeASCIIBase64(s string) string {
+	return base64.StdEncoding.EncodeToString([]byte(s))
 }
 
-func TrimASCIISpace() {
-
+// DecodeASCIIBase64 decodes a given Base64 encoded string back to its original ASCII form.
+func DecodeASCIIBase64(encodedStr string) (string, error) {
+	bytes, err := base64.StdEncoding.DecodeString(encodedStr)
+	if err != nil {
+		return "", err // Return the error if decoding fails
+	}
+	return string(bytes), nil
 }
 
-func ReplaceASCIIChars() {
+// TrimASCIISpace trims leading and trailing ASCII whitespace from a string.
+func TrimASCIISpace(s string) string {
+	return strings.TrimSpace(s)
+}
 
+// ReplaceASCIIChars replaces all occurrences of a specified character (oldChar) with another (newChar) in a string.
+func ReplaceASCIIChars(s string, oldChar, newChar rune) string {
+	return strings.ReplaceAll(s, string(oldChar), string(newChar))
 }
 
 // IsValidEmail provides basic email validation
@@ -67,22 +97,23 @@ func IsValidEmail(email string) bool {
 	re := regexp.MustCompile(pattern)
 	return re.MatchString(email)
 }
-func ASCIICharFrequency() {
 
+// ASCIICharFrequency calculates the frequency of each ASCII character in the given string.
+// It returns a slice where the index corresponds to the ASCII value of the character.
+func ASCIICharFrequency(s string) [128]int {
+	var frequency [128]int
+	for _, char := range s {
+		if char < 128 {
+			frequency[char]++
+		}
+	}
+	return frequency
 }
 
 func IsValidIdentifier(id string, min, max int) bool {
 	pattern := fmt.Sprintf(`^\w{%d,%d}$`, min, max)
 	re := regexp.MustCompile(pattern)
 	return re.MatchString(id)
-}
-
-func toLower[T string | rune](v T) {
-	switch val := any(v).(type) {
-	case rune:
-		// Find A
-		_ = val
-	}
 }
 
 func ToLowerASCII[T string | rune](v T) string {

@@ -2,8 +2,10 @@ package util
 
 import "regexp"
 
-func FindASCIIDigits() {
-
+// FindASCIIDigits finds and returns all sequences of ASCII digits in the given string.
+func FindASCIIDigits(s string) []string {
+	digitRegexp := regexp.MustCompile(`\d+`)
+	return digitRegexp.FindAllString(s, -1)
 }
 
 // FindASCIIWords finds and returns all ASCII word sequences in a given string.
