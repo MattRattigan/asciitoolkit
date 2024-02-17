@@ -4,7 +4,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	//"github.com/MattRattigan/asciitoolkit/ascii"
+	"github.com/MattRattigan/asciitoolkit/ascii"
 	"regexp"
 	"strings"
 )
