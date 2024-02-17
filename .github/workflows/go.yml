@@ -15,11 +15,11 @@ jobs:
     # Test and generate coverage report for both modules
     - name: Test and Coverage for ASCII Module
       run: go test -v -coverprofile=ascii_coverage.out ./...
-      working-directory: ./asciitoolkit/ascii
+      working-directory: ./ascii
 
     - name: Test and Coverage for Util Module
       run: go test -v -coverprofile=util_coverage.out ./...
-      working-directory: ./asciitoolkit/util
+      working-directory: ./util
 
     - name: Install gocovmerge
       run: go install github.com/wadey/gocovmerge@latest
@@ -27,10 +27,10 @@ jobs:
     - name: Merge Coverage Reports
       run: |
         ~/go/bin/gocovmerge ascii_coverage.out util_coverage.out > combined_coverage.out
-      working-directory: ./asciitoolkit
+      working-directory: .
 
     - name: Upload Combined Coverage to Coveralls
       uses: shogo82148/actions-goveralls@v1
       with:
-        path-to-profile: ./asciitoolkit/combined_coverage.out
+        path-to-profile: ./combined_coverage.out
         github-token: ${{ secrets.GITHUB_TOKEN }}
