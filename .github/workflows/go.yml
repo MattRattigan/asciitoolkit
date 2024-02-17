@@ -12,14 +12,10 @@ jobs:
       with:
         go-version: '1.20'
 
-    # Test and generate coverage report for each module
+    # Test and generate coverage report for both modules
     - name: Test and Coverage for ASCII Module
       run: go test -v -coverprofile=ascii_coverage.out ./...
       working-directory: ./asciitoolkit/ascii
-
-    - name: Test and Coverage for Rand_ASCII Module
-      run: go test -v -coverprofile=rand_ascii_coverage.out ./...
-      working-directory: ./asciitoolkit/rand_ascii
 
     - name: Test and Coverage for Util Module
       run: go test -v -coverprofile=util_coverage.out ./...
@@ -30,7 +26,7 @@ jobs:
 
     - name: Merge Coverage Reports
       run: |
-        ~/go/bin/gocovmerge ascii_coverage.out rand_ascii_coverage.out util_coverage.out > combined_coverage.out
+        ~/go/bin/gocovmerge ascii_coverage.out util_coverage.out > combined_coverage.out
       working-directory: ./asciitoolkit
 
     - name: Upload Combined Coverage to Coveralls
