@@ -26,7 +26,7 @@ jobs:
 
     - name: Merge Coverage Reports
       run: |
-        ~/go/bin/gocovmerge ./ascii/ascii_coverage.out ./util/util_coverage.out > combined_coverage.out
+        ~/go/bin/gocovmerge ascii/ascii_coverage.out util/util_coverage.out > combined_coverage.out
       working-directory: .
 
     - name: Upload Combined Coverage to Coveralls
