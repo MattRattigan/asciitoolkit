@@ -10,3 +10,4 @@ ASCIIToolkit is a Go module designed to provide utilities for manipulating and a
 
   ### Prerequisites
 - Go 1.15 or later.
+
