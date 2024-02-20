@@ -2,19 +2,13 @@ package rand_ascii
 
 import (
 	"github.com/MattRattigan/asciitoolkit/ascii"
-	"math/rand"
-	"time"
 )
-
-func init() {
-	rand.Seed(time.Now().UnixNano())
-}
 
 // helperChar facilitates the actions performed in RandCharDigitStr, RandASCIILetterStr, RandASCIILowerStr, RandASCIIUpperStr,
 // and RandASCIIPunctStr
 func helperChar(f func() string) string {
 	val := f()
-	return string(val[rand.Intn(len(val))])
+	return string(val[ran.Intn(len(val))]) // ran is Global in rand_char.go. rand.Seed depreciated 1.20
 }
 
 // RandCharDigitStr generates a random ASCII character returns as type string. The selection is made from the set of characters

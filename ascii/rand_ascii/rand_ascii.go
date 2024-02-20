@@ -7,8 +7,12 @@ import (
 	"time"
 )
 
+// rand.Seed depreciated Go 1.20 the new way of doing it. A pointer, source and new rand object
+var ran *rand.Rand
+
 func init() {
-	rand.Seed(time.Now().UnixNano())
+	src := rand.NewSource(time.Now().UnixNano())
+	ran = rand.New(src)
 }
 
 // Iota
@@ -27,7 +31,7 @@ const (
 // and RandASCIIPunctRune
 func helperRune(f func() string) rune {
 	val := f()
-	return rune(val[rand.Intn(len(val))])
+	return rune(val[ran.Intn(len(val))])
 }
 
 // RandASCIIDigitRune generates a random ASCII character returns as type rune. The selection is made from the set of characters

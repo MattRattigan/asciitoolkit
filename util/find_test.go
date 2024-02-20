@@ -5,14 +5,15 @@ import (
 	"testing"
 )
 
-type test struct {
+type testFind struct {
 	name  string
 	input string
 	want  []string
 }
 
 func TestFindASCIIDigits(t *testing.T) {
-	tests := []test{
+	t.Parallel()
+	tests := []testFind{
 		{
 			name:  "Only digits",
 			input: "12345",
@@ -47,7 +48,8 @@ func TestFindASCIIDigits(t *testing.T) {
 
 // TestFindASCIIWords tests the FindASCIIWords function for accuracy.
 func TestFindASCIIWords(t *testing.T) {
-	tests := []test{
+	t.Parallel()
+	tests := []testFind{
 		{
 			name:  "Only words",
 			input: "hello world",
@@ -60,8 +62,8 @@ func TestFindASCIIWords(t *testing.T) {
 		},
 		{
 			name:  "Words with numbers and punctuation",
-			input: "hello, world! 1234 test123 test",
-			want:  []string{"hello", "world", "test", "test"},
+			input: "hello, world! 1234 test123 testFind",
+			want:  []string{"hello", "world", "test", "testFind"},
 		},
 		{
 			name:  "All letters",
@@ -71,10 +73,12 @@ func TestFindASCIIWords(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		got := FindASCIIWords(tc.input)
+		t.Run(tc.name, func(t *testing.T) {
+			got := FindASCIIWords(tc.input)
 
-		if !reflect.DeepEqual(got, tc.want) {
-			t.Errorf("%s: got %v, want %v", tc.name, got, tc.want)
-		}
+			if !reflect.DeepEqual(got, tc.want) {
+				t.Errorf("%s: got %v, want %v", tc.name, got, tc.want)
+			}
+		})
 	}
 }

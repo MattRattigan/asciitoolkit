@@ -1,73 +1,77 @@
 package ascii
 
-// IsASCIIDigit checks if the given rune or single character string v represents an ASCII digit between ('0' through '9').
-// returns true if v is within the range of ASCII digits, false if otherwise.
-func IsASCIIDigit[T string | rune](v T) bool {
+func isHelper[T Textual, U comparable](v T, lowBound, upBound U) bool {
 	switch val := any(v).(type) {
 	case rune:
-		return val >= '0' && val <= '9'
+		if ub, ok := any(upBound).(rune); ok {
+			if lb, ok := any(lowBound).(rune); ok {
+				return val >= lb && val <= ub
+			}
+		}
 	case string:
 		if len(val) == 1 {
-			return val[0] >= '0' && val[0] <= '9'
+			if ub, ok := any(upBound).(byte); ok {
+				if lb, ok := any(lowBound).(byte); ok {
+					return val[0] >= lb && val[0] <= ub
+				}
+			}
 		}
-		return false // Return false for strings longer than 1 character
-	default:
-		return false
 	}
+	return false
+}
+
+// IsASCIIDigit checks if the given rune or single character string v represents an ASCII digit between ('0' through '9').
+// returns true if v is within the range of ASCII digits, false if otherwise.
+func IsASCIIDigit[T Text](v T) bool {
+	switch val := any(v).(type) {
+	case rune:
+		return isHelper(val, '0', '9')
+	case string:
+		return isHelper(val, byte('0'), byte('9'))
+	}
+	return false
 }
 
 // IsASCIILetter checks if the given rune or single character string v represents an ASCII that reside between ('A' through 'Z') or .
 // ('a' through 'z') returns true if v is within the range of ASCII, false if otherwise.
-func IsASCIILetter[T string | rune](v T) bool {
+func IsASCIILetter[T Text](v T) bool {
 	switch val := any(v).(type) {
 	case rune:
-		return (val >= 'A' && val <= 'Z') || (val >= 'a' && val <= 'z')
+		return isHelper(val, 'A', 'Z') || isHelper(val, 'a', 'z')
 	case string:
-		if len(val) == 1 {
-			return (val[0] >= 'A' && val[0] <= 'Z') || (val[0] >= 'a' && val[0] <= 'z')
-		}
-		return false
-	default:
-		return false
+		return isHelper(val, byte('A'), byte('Z')) || isHelper(val, byte('a'), byte('z'))
 	}
+	return false
 }
 
 // IsASCIIUpper checks if the given rune r represents an ASCII uppercase ascii ('A' through 'Z').
 // returns true if r is within the range of ASCII uppercase ascii, false if otherwise.
-func IsASCIIUpper[T string | rune](v T) bool {
+func IsASCIIUpper[T Text](v T) bool {
 	switch val := any(v).(type) {
 	case rune:
-		return val >= 'A' && val <= 'Z'
+		return isHelper(val, 'A', 'Z')
 	case string:
-		if len(val) == 1 {
-			return val[0] >= 'A' && val[0] <= 'Z'
-		}
-		return false
-	default:
-		return false
+		return isHelper(val, byte('A'), byte('Z'))
 	}
+	return false
 }
 
 // IsASCIILower checks if the given rune r represents an ASCII lowercase letter ('a' through 'z').
 // returns true if r is within the range of ASCII lowercase ascii, false if otherwise.
-func IsASCIILower[T string | rune](v T) bool {
+func IsASCIILower[T Text](v T) bool {
 	switch val := any(v).(type) {
 	case rune:
-		return val >= 'a' && val <= 'z'
+		return isHelper(val, 'a', 'z')
 	case string:
-		if len(val) == 1 {
-			return val[0] >= 'a' && val[0] <= 'z'
-		}
-		return false
-	default:
-		return false
+		return isHelper(val, byte('a'), byte('z'))
 	}
+	return false
 }
 
 // IsASCIIPunct checks if the given rune r represents an ASCII punctuation character.
 // ASCII punctuation characters are in the ranges of 33-47, 58-64, 91-96, and 123-126.
 // It returns true if r is within any of these ranges, indicating it is a punctuation character; false otherwise.
-func IsASCIIPunct[T string | rune](v T) bool {
+func IsASCIIPunct[T Text](v T) bool {
 	switch val := any(v).(type) {
 	case rune:
 		return (val >= 33 && val <= 47) || (val >= 58 && val <= 64) ||
@@ -80,7 +84,6 @@ func IsASCIIPunct[T string | rune](v T) bool {
 		return false
 	default:
 		return false
-
 	}
 }
 

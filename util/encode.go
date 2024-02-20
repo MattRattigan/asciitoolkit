@@ -9,13 +9,32 @@ import (
 	"strings"
 )
 
-// ToASCIIHex converts a string to its ASCII hexadecimal representation.
-func ToASCIIHex(s string) string {
-	result := ""
-	for _, c := range s {
-		result += fmt.Sprintf("%02x", c)
+// ToASCIIHex converts a value of type Textual or rune to its ASCII hexadecimal representation.
+// It handles strings, slices of runes, slices of strings, and single runes by converting them to hexadecimal.
+func ToASCIIHex[T ascii.Textual](t T) (str string) {
+	var builder strings.Builder
+	// Convert a string to ASCII hexadecimal representation
+	toString := func(a string) string {
+		for _, c := range a {
+			builder.WriteString(fmt.Sprintf("%02x", c))
+		}
+		return builder.String()
 	}
-	return result
+	switch val := any(t).(type) {
+	case string:
+		return toString(val)
+	case []rune:
+		return toString(string(val))
+	case []string:
+		for _, s := range val {
+			toString(s)
+		}
+		return builder.String()
+	case rune:
+		return toString(string(val))
+	}
+	// replaced for default, should never reach here, catch all
+	return str
 }
 
 // FromASCIIHex converts an ASCII hexadecimal representation back to the original string.
@@ -44,7 +63,7 @@ func CompareASCIIIgnoreCase(s1, s2 string) bool {
 }
 
 // ToASCIILowerInPlace converts the input to lowercase in place. It supports both string and rune types.
-func ToASCIILowerInPlace[T string | rune](v *T) {
+func ToASCIILowerInPlace[T ascii.Text](v *T) {
 	switch val := any(v).(type) {
 	case *string:
 		*val = ToLowerASCII(*val)
@@ -56,7 +75,7 @@ func ToASCIILowerInPlace[T string | rune](v *T) {
 }
 
 // ToASCIIUpperInPlace converts the input to uppercase in place. It supports both string and rune types.
-func ToASCIIUpperInPlace[T string | rune](v *T) {
+func ToASCIIUpperInPlace[T ascii.Text](v *T) {
 	switch val := any(v).(type) {
 	case *string:
 		*val = ToUpperASCII(*val)
@@ -116,7 +135,7 @@ func IsValidIdentifier(id string, min, max int) bool {
 	return re.MatchString(id)
 }
 
-func ToLowerASCII[T string | rune](v T) string {
+func ToLowerASCII[T ascii.Text](v T) string {
 	switch val := any(v).(type) {
 	case string:
 		result := []byte(val)
@@ -137,7 +156,7 @@ func ToLowerASCII[T string | rune](v T) string {
 	}
 }
 
-func ToUpperASCII[T string | rune](v T) string {
+func ToUpperASCII[T ascii.Text](v T) string {
 	switch val := any(v).(type) {
 	case string:
 		result := []byte(val)
