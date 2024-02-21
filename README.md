@@ -11,3 +11,6 @@ ASCIIToolkit is a Go module designed to provide utilities for manipulating and a
   ### Prerequisites
 - Go 1.15 or later.
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
