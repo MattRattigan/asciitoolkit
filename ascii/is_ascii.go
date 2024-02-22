@@ -89,7 +89,7 @@ func IsASCIIPunct[T Text](v T) bool {
 
 // IsASCII checks whether character within the provided string are the standard ASCII characters
 // (Printable and Control characters), "" will return true.
-func IsASCII[T string | rune](v T) bool {
+func IsASCII[T Text](v T) bool {
 	switch val := any(v).(type) {
 	case rune:
 		if val > 127 {
@@ -108,7 +108,7 @@ func IsASCII[T string | rune](v T) bool {
 }
 
 // IsASCIIAlphanumeric checks whether the provided string is a set of alphanumeric characters.
-func IsASCIIAlphanumeric[T string | rune](v T) bool {
+func IsASCIIAlphanumeric[T Text](v T) bool {
 	switch val := any(v).(type) {
 	case rune:
 		return IsASCIIDigit(val) || IsASCIILetter(val)
@@ -128,7 +128,7 @@ func IsASCIIAlphanumeric[T string | rune](v T) bool {
 	}
 }
 
-func IsASCIIWhitespace[T string | rune](v T) bool {
+func IsASCIIWhitespace[T Text](v T) bool {
 	switch val := any(v).(type) {
 	case rune:
 		return val == ' ' || val == '\t' || val == '\n' || val == '\r' || val == '\f' || val == '\v'
